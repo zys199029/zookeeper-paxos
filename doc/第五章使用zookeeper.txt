@@ -1,0 +1,13 @@
+配置文件zoo.cfg
+	tickTime=2000
+	dataDir=/var/lib/zookeeper
+	clientPort=2181
+	initLimit=5
+	syncLimit=2
+	server.1=ip1:2888:3888
+	server.2=ip2:2888:3888
+	server.3=ip3:2888:3888
+	其中server.id=host:port:port
+	id称为server id，用来标识该机器在集群中的机器序号，同时，在每台zookeeper机器上，我们都需要在数据目录（即dataDir参数指定的目录）下创建一个myid文件，该文件只有一行
+	内容，并且是一个数字，即对应于每台机器的server id数字。
+	集群中所有机器上zoo.cfg文件的内容都应该是一致的。id的范围是1-255。
