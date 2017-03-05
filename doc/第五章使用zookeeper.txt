@@ -26,4 +26,8 @@
 	
 	ls列出zookeeper节点下的所有子节点。
 	
-	get
+	get获取zookeeper指定节点的数据内容和属性信息。get path [watch]
+	
+	set更新指定节点的数据内容。set path data [version]，节点的数据是有版本概念的，这个参数用于指定本次更新操作是基于znode的哪一个数据版本进行的。
+	
+	delete path [version]，version参数和set命令中的version参数的作用是一致的。无法删除一个包含子节点的节点。
