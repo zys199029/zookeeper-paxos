@@ -1,19 +1,19 @@
-package book.chapter05.$5_4_2;
+package com.demo.zookeeper.c5_4curator.create;
+
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 
-//使用curator来创建一个含隔离命名空间的ZooKeeper客户端
-public class Create_Session_Sample_With_Namespace {
+//使用Fluent风格的API接口来创建一个ZooKeeper客户端
+public class Create_Session_Sample_fluent {
     public static void main(String[] args) throws Exception{
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         CuratorFramework client =
         CuratorFrameworkFactory.builder()
-                             .connectString("domain1.book.zookeeper:2181")
+                             .connectString("192.168.192.145:2181")
                              .sessionTimeoutMs(5000)
                              .retryPolicy(retryPolicy)
-                             .namespace("base")
                              .build();
         client.start();
         Thread.sleep(Integer.MAX_VALUE);
