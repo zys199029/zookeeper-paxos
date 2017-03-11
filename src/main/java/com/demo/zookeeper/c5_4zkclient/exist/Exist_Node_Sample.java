@@ -1,4 +1,4 @@
-package book.chapter05.$5_4_1;
+package com.demo.zookeeper.c5_4zkclient.exist;
 
 import org.I0Itec.zkclient.ZkClient;
 
@@ -6,7 +6,7 @@ import org.I0Itec.zkclient.ZkClient;
 public class Exist_Node_Sample {
     public static void main(String[] args) throws Exception {
     	String path = "/zk-book";
-    	ZkClient zkClient = new ZkClient("domain1.book.zookeeper:2181", 2000);
+    	ZkClient zkClient = new ZkClient("192.168.192.145:2181", 2000);
         System.out.println("Node " + path + " exists " + zkClient.exists(path));
     }
 }
