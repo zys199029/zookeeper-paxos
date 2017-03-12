@@ -1,18 +1,20 @@
-package book.chapter05.$5_4_2;
+package com.demo.zookeeper.c5_4curator.testingserver;
+
 import org.apache.curator.test.TestingCluster;
 import org.apache.curator.test.TestingZooKeeperServer;
 
+//模拟集群
 public class TestingCluster_Sample {
 
 	public static void main(String[] args) throws Exception {
 		TestingCluster cluster = new TestingCluster(3);
 		cluster.start();
 		Thread.sleep(2000);
-		
+
 		TestingZooKeeperServer leader = null;
 		for(TestingZooKeeperServer zs : cluster.getServers()){
 			System.out.print(zs.getInstanceSpec().getServerId()+"-");
-			System.out.print(zs.getQuorumPeer().getServerState()+"-");  
+			System.out.print(zs.getQuorumPeer().getServerState()+"-");
 			System.out.println(zs.getInstanceSpec().getDataDirectory().getAbsolutePath());
 			if( zs.getQuorumPeer().getServerState().equals( "leading" )){
 				leader = zs;
@@ -22,7 +24,7 @@ public class TestingCluster_Sample {
         System.out.println( "--After leader kill:" );
         for(TestingZooKeeperServer zs : cluster.getServers()){
 			System.out.print(zs.getInstanceSpec().getServerId()+"-");
-			System.out.print(zs.getQuorumPeer().getServerState()+"-");  
+			System.out.print(zs.getQuorumPeer().getServerState()+"-");
 			System.out.println(zs.getInstanceSpec().getDataDirectory().getAbsolutePath());
 		}
         cluster.stop();

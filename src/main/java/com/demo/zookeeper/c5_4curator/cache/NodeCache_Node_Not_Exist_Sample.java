@@ -1,4 +1,4 @@
-package book.chapter05.$5_4_2;
+package com.demo.zookeeper.c5_4curator.cache;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -11,19 +11,20 @@ public class NodeCache_Node_Not_Exist_Sample {
 
     static String path = "/curator_nodecache_sample";
     static CuratorFramework client = CuratorFrameworkFactory.builder()
-            .connectString("domain1.book.zookeeper:2181")
+            .connectString("192.168.192.145:2181")
             .sessionTimeoutMs(5000)
             .retryPolicy(new ExponentialBackoffRetry(1000, 3))
             .build();
-	
+
 	public static void main(String[] args) throws Exception {
 		client.start();
 	    final NodeCache cache = new NodeCache(client,path,false);
 		cache.start(true);
 		cache.getListenable().addListener(new NodeCacheListener() {
+			//如果原本节点不存在，那么Cache就会在节点被创建后触发NodeCacheListener。
 			@Override
 			public void nodeChanged() throws Exception {
-				System.out.println("Node data update, new data: " + 
+				System.out.println("Node data update, new data: " +
 			    new String(cache.getCurrentData().getData()));
 			}
 		});
