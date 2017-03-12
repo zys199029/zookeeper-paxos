@@ -1,9 +1,13 @@
-package book.chapter05.$5_4_2;
+package com.demo.zookeeper.c5_4curator.barrier;
+
 import java.io.IOException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+//Barrier是一种用来控制多线程之间同步的经典方式，jdk自带了CyclicBarrier。
+//可以看到，多线程在并发的情况下，都会准备的等待所有线程都处理就绪状态后才开始同时执行其它业务逻辑。
+//这是在同一个jvm下没问题，但在分布式环境下又该如何解决呢？
 public class Recipes_CyclicBarrier {
 
 	public static CyclicBarrier barrier = new CyclicBarrier( 3 );
@@ -15,6 +19,7 @@ public class Recipes_CyclicBarrier {
 		executor.shutdown();
 	}
 }
+
 class Runner implements Runnable {
 	private String name;
 	public Runner( String name ) {
