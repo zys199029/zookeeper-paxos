@@ -1,4 +1,5 @@
-package book.chapter05.$5_4_2;
+package com.demo.zookeeper.c5_4curator.lock;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
@@ -12,8 +13,9 @@ public class Recipes_Lock {
 
 	static String lock_path = "/curator_recipes_lock_path";
     static CuratorFramework client = CuratorFrameworkFactory.builder()
-            .connectString("domain1.book.zookeeper:2181")
+            .connectString("192.168.192.145:2181")
             .retryPolicy(new ExponentialBackoffRetry(1000, 3)).build();
+
 	public static void main(String[] args) throws Exception {
 		client.start();
 		final InterProcessMutex lock = new InterProcessMutex(client,lock_path);
@@ -23,12 +25,14 @@ public class Recipes_Lock {
 				public void run() {
 					try {
 						down.await();
+						//分布式锁的获取
 						lock.acquire();
 					} catch ( Exception e ) {}
 					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss|SSS");
 					String orderNo = sdf.format(new Date());
 					System.out.println("生成的订单号是 : "+orderNo);
 					try {
+						//分布式锁的释放
 						lock.release();
 					} catch ( Exception e ) {}
 				}
