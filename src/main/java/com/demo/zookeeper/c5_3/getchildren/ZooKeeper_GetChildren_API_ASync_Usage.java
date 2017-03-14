@@ -38,6 +38,7 @@ public class ZooKeeper_GetChildren_API_ASync_Usage implements Watcher {
         Thread.sleep( Integer.MAX_VALUE );
     }
 
+    @Override
 	public void process(WatchedEvent event) {
 		if (KeeperState.SyncConnected == event.getState()) {
 			if (EventType.None == event.getType() && null == event.getPath()) {
