@@ -1,5 +1,8 @@
 package com.demo.zookeeper.c5_3.create;
+
+import java.io.InputStream;
 import java.util.concurrent.CountDownLatch;
+
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -39,6 +42,20 @@ public class ZooKeeper_Create_API_Sync_Usage implements Watcher {
                 CreateMode.EPHEMERAL_SEQUENTIAL);
         //创建临时顺序节点，zookeeper会自动在节点后缀加上一个数字，返回的是该数据节点的一个完整的节点路径
         System.out.println("Success create znode: " + path2);
+
+        //存入一个图片
+        InputStream fis = ZooKeeper_Create_API_Sync_Usage.class.getResourceAsStream("catchpic.jpg");
+        byte[] data = new byte[fis.available()];
+        fis.read(data);
+        fis.close();
+
+        String path3 = zookeeper.create("/zk-testpic-ephemeral-",
+        		data,
+        		Ids.OPEN_ACL_UNSAFE,
+        		CreateMode.EPHEMERAL);
+        System.out.println("Success create znode: " + path3);
+
+        Thread.sleep(Integer.MAX_VALUE);
     }
 
     public void process(WatchedEvent event) {
