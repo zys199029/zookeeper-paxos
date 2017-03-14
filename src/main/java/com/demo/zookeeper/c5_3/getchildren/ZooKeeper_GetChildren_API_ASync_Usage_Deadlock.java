@@ -1,4 +1,4 @@
-package book.chapter05;
+package com.demo.zookeeper.c5_3.getchildren;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +17,6 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 
 /**
  * ZooKeeper API 获取子节点列表，使用异步(ASync)接口。
- * @author <a href="mailto:nileader@gmail.com">银时</a>
  */
 public class ZooKeeper_GetChildren_API_ASync_Usage_Deadlock implements Watcher {
 
@@ -39,7 +38,7 @@ public class ZooKeeper_GetChildren_API_ASync_Usage_Deadlock implements Watcher {
             InterruptedException {
 
         if (zk == null) {
-            zk = this.createSession("domain1.book.zookeeper:2181", 5000, this);
+            zk = this.createSession("192.168.192.145:2181", 5000, this);
         }
         zk.create(path, data.getBytes(), Ids.OPEN_ACL_UNSAFE, createMode);
     }
@@ -49,7 +48,7 @@ public class ZooKeeper_GetChildren_API_ASync_Usage_Deadlock implements Watcher {
 
         System.out.println("===Start to get children znodes.===");
         if (zk == null) {
-            zk = this.createSession("domain1.book.zookeeper:2181", 5000, this);
+            zk = this.createSession("192.168.192.145:2181", 5000, this);
         }
 
         final CountDownLatch _semaphore_get_children = new CountDownLatch(1);
@@ -93,7 +92,6 @@ public class ZooKeeper_GetChildren_API_ASync_Usage_Deadlock implements Watcher {
     public void process(WatchedEvent event) {
         System.out.println("Receive watched event：" + event);
         if (KeeperState.SyncConnected == event.getState()) {
-
             if (EventType.None == event.getType() && null == event.getPath()) {
                 connectedSemaphore.countDown();
             } else if (event.getType() == EventType.NodeChildrenChanged) {
