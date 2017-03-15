@@ -1,4 +1,4 @@
-package com.demo.zookeeper.c6.loadbalancing2;
+package com.demo.zookeeper.c6.register;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.state.ConnectionState;
