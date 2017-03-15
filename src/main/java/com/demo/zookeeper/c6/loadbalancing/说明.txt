@@ -1,0 +1,11 @@
+三个类：
+	ServiceAProvider
+	ServiceBProvider
+	ServiceConsumer
+
+其中
+	ServiceAProvider提供的服务名service-A，指向IP为192.168.58.130
+	ServiceBProvider提供的服务名service-A，指向IP为192.168.58.131
+	当有消费者请求时，随机地选取service-A列表的服务器提供服务
+
+ServiceConsumer 为消费者类
