@@ -1,4 +1,4 @@
-package book.chapter07.$7_2_2;
+package com.demo.zookeeper.c7_2jute;
 
 import org.apache.jute.InputArchive;
 import org.apache.jute.OutputArchive;
