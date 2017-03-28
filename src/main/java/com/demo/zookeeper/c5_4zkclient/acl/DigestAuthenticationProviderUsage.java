@@ -1,4 +1,4 @@
-package book.chapter07.$7_1_5;
+package com.demo.zookeeper.c5_4zkclient.acl;
 import java.security.NoSuchAlgorithmException;
 import org.apache.zookeeper.server.auth.DigestAuthenticationProvider;
 

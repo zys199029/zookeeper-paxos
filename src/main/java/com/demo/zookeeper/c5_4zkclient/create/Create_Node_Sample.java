@@ -6,7 +6,7 @@ public class Create_Node_Sample {
 
     public static void main(String[] args) throws Exception {
     	ZkClient zkClient = new ZkClient("192.168.192.145:2181", 5000);
-        String path = "/zk-book/c1";
+        String path = "/zk-book/z2";
         //path：指定数据节点的节点路径，即api调用的目的是创建该节点
         //data：节点的初始数据内容，可以传入null
         //mode：节点类型，是一个枚举类型，通常有4中可选的节点类型
