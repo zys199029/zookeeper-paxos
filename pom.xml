@@ -82,7 +82,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>spring_boot_cloud_parent</finalName>
+		<finalName>zookeeper-paxos</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
